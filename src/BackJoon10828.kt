@@ -1,6 +1,7 @@
 //https://www.acmicpc.net/problem/10828
 
 import java.io.*
+import java.util.*
 
 class Stack<T> {
     private val list = mutableListOf<T>()
@@ -29,27 +30,28 @@ fun main() {
     val stack = Stack<Int>()
     val n = br.readLine().toInt()
     repeat(n) {
-        val input = br.readLine()
-        when {
-            input.startsWith("push") -> {
-                val (cmd, v) = input.split(" ")
-                stack.push(v.toInt())
+        val st = StringTokenizer(br.readLine())
+        val cmd = st.nextToken()
+        when(cmd) {
+            "push" -> {
+                val v = st.nextToken().toInt()
+                stack.push(v)
             }
-            input == "pop" -> {
+            "pop" -> {
                 val print = (stack.pop() ?: -1).toString()
                 bw.write(print)
                 bw.newLine()
             }
-            input == "top" -> {
+            "top" -> {
                 val print = (stack.peek() ?: -1).toString()
                 bw.write(print)
                 bw.newLine()
             }
-            input == "size" -> {
+            "size" -> {
                 bw.write(stack.size().toString())
                 bw.newLine()
             }
-            input == "empty" -> {
+            "empty" -> {
                 val print = if (stack.isEmpty()) {
                     1
                 } else {
