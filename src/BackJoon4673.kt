@@ -1,22 +1,24 @@
 //https://www.acmicpc.net/problem/4673
 
-import java.io.BufferedReader
-import java.io.BufferedWriter
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-
 fun main() {
-    val br = BufferedReader(InputStreamReader(System.`in`))
-    val bw = BufferedWriter(OutputStreamWriter(System.out))
+    val br = System.`in`.bufferedReader()
+    val bw = System.out.bufferedWriter()
 
-    val list = (1..10000).toMutableList()
+    val list = BooleanArray(10000) { false }
 
-    (1..10000).forEach { num ->
-        val dn = num + num.toString().map { it.toString().toInt() }.sum()
-        list.remove(dn)
+    var answer = ""
+    (1 until 10000).forEach { num ->
+        if (!list[num]) {
+            answer += "$num\n"
+        }
+
+        var dn = num + num.toString().map { it.toString().toInt() }.sum()
+        if (dn < 10000) {
+            list[dn] = true
+        }
     }
 
-    bw.write(list.joinToString("\n"))
+    bw.write(answer)
     bw.flush()
     bw.close()
 }
