@@ -9,7 +9,7 @@
 
 import java.util.*
 
-var count: Int = 0
+private var count: Int = 0
 
 fun main() {
     val br = System.`in`.bufferedReader()
